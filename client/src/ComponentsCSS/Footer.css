@@ -1,0 +1,11 @@
+.Footer {
+    background-color: rgb(64, 64, 240);
+    text-align: center;
+    color: honeydew;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    width: 100%;
+    bottom: 0;
+    margin-top: 10px;
+    position: inherit;
+}

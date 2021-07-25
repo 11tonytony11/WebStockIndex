@@ -1,0 +1,9 @@
+.tradingview-widget-containerAnalysts {
+    padding-left: 38%;
+}
+
+@media (max-width: 1000px) {
+    .tradingview-widget-containerAnalysts {
+        padding-left: 20%;
+    }
+}
