@@ -1,5 +1,5 @@
 
-var fs = require('fs');
+var Stock = require('../models/stock');
 
 //-------------------------------------------------------------------
 /*
@@ -8,10 +8,9 @@ Input:  req & res objects
 Output: sends AMZN json data
 */
 //-------------------------------------------------------------------
-function getDefault(req, res)
+async function getDefault(req, res)
 {
-    console.log(`Sending: ${JSON.stringify(getDataFromFile())}`)
-    res.send(getDataFromFile());
+    res.send(await getDataFromDB());
 }
 //-------------------------------------------------------------------
 /*
@@ -20,22 +19,24 @@ Input:  req & res objects
 Output: sends json data with info to user
 */
 //-------------------------------------------------------------------
-function getBySymbol(req, res)
+async function getBySymbol(req, res)
 {
-    res.send(getDataFromFile(req.params.symbol));
+    res.send(await getDataFromDB(req.params.symbol));
 }
 //-------------------------------------------------------------------
 /*
-This function reads stock data from the json file
+This function reads stock data from the db
 Input:  string - symbol ticker
 Output: json with data about the specific company
 */
 //-------------------------------------------------------------------
-function getDataFromFile(symbol = "AMZN")
+async function getDataFromDB(symbol = "AMZN")
 {
-    const obj = JSON.parse(fs.readFileSync(__dirname + '/data.json', 'utf8'));
-
-    return obj[symbol.toUpperCase()];
+    var data;
+    await Stock.findOne({Symbol: symbol.toUpperCase()}, function(err, res) {
+        data = res;
+    });
+    return data;
 }
 //-------------------------------------------------------------------
 module.exports = {
