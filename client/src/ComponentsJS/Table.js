@@ -21,11 +21,11 @@ export default function Table(props) {
     </tr>
     <tr>
       <td>{props.isFinancial ? "Net income" : "52W Range"}</td>
-      <td>{props.isFinancial ? props.data["net"] : props.data["52wRange"]}</td>
+      <td>{props.isFinancial ? props.data["net"] : props.data["Range"]}</td>
     </tr>
     <tr>
       <td>{props.isFinancial ? "" : "P/E"}</td>
-      <td>{props.isFinancial ? "" : props.data["P/E"]}</td>
+      <td>{props.isFinancial ? "" : props.data["PE"]}</td>
   </tr>
 </table>
     );
