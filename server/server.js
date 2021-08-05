@@ -1,9 +1,16 @@
 const express = require('express');
 const cors = require('cors');
 const apiRouter = require('./routes/apiRoutes');
+const mongoose = require('mongoose');
 
-const app = express()
+const app = express();
 app.use(cors());
+
+// DB connection
+const dbURI = "mongodb+srv://client:CENSORED@cluster0.3vmuf.mongodb.net/stockIndex?retryWrites=true&w=majority";
+mongoose.connect(dbURI, { useNewUrlParser: true , useUnifiedTopology: true })
+  .then(() => console.log('connected to db'))
+  .catch((err) => console.log(err));
 
 
 // Home Route
